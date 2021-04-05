@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "./libb.h"
+#include <QQmlEngine>
+#include "./src/version.h"
 int main(int argc, char *argv[])
 {
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
@@ -10,8 +11,10 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
-    Libb b;
-    b.version();
+    Version lVersion;
+    lVersion.version();
+    qmlRegisterType<Version>("com.plumeteam.Version", 1, 0, "Version");
+
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

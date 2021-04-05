@@ -30,3 +30,16 @@
 *.exe
 *.out
 *.app
+*.Debug
+*.Release
+MakeFile
+*.user
+*.gradle
+/mainproject/android-build
+/mainproject/main/virtual/armeabi-v7a
+/mainproject/main/virtual/release
+/mainproject/app_process
+/mainproject/linker
+/mainproject/libb/libb/armeabi-v7a
+/mainproject/libb/libb/debug
+/mainproject/libb/libb/release

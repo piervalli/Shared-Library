@@ -39,7 +39,7 @@ DISTNAME      = libvirtual_armeabi-v7a.so1.0.0
 DISTDIR = C:\data\project-qt-shared\Shared-Library\mainproject\main\virtual\armeabi-v7a\libvirtual_armeabi-v7a.so1.0.0
 LINK          = C:\Users\pier\AppData\Local\Android\Sdk\ndk\21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++ -target armv7a-linux-androideabi21 -fno-limit-debug-info
 LFLAGS        = -Wl,-soname,libvirtual_armeabi-v7a.so -Wl,--build-id=sha1 -Wl,--no-undefined -Wl,-z,noexecstack -shared
-LIBS          = $(SUBLIBS) -LC:/data/project-qt-shared/Shared-Library/mainproject/main/virtual/../../libb/libb/ -llibb C:/Qt/5.15.2/android/lib/libQt5Quick_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5Gui_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5QmlModels_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5Qml_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5Network_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5Core_armeabi-v7a.so -lGLESv2   -llog -lz -lm -ldl -lc
+LIBS          = $(SUBLIBS) -LC:/data/project-qt-shared/Shared-Library/mainproject/main/virtual/../../libb/libb/ -llibb_armeabi-v7a C:/Qt/5.15.2/android/lib/libQt5Quick_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5Gui_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5QmlModels_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5Qml_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5Network_armeabi-v7a.so C:/Qt/5.15.2/android/lib/libQt5Core_armeabi-v7a.so -lGLESv2   -llog -lz -lm -ldl -lc
 AR            = C:\Users\pier\AppData\Local\Android\Sdk\ndk\21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-ar cqs
 RANLIB        = C:\Users\pier\AppData\Local\Android\Sdk\ndk\21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/bin/arm-linux-androideabi-ranlib
 SED           = $(QMAKE) -install sed
@@ -290,9 +290,10 @@ armeabi-v7a\main.obj: main.cpp C:\Qt\5.15.2\android\include\QtGui\QGuiApplicatio
 		C:\Qt\5.15.2\android\include\QtCore\qpointer.h \
 		C:\Qt\5.15.2\android\include\QtCore\qmetaobject.h \
 		C:\Qt\5.15.2\android\include\QtQml\qqmlerror.h \
-		..\..\libb\libb\libb.h \
-		..\..\libb\libb\libb_global.h \
-		C:\Qt\5.15.2\android\include\QtCore\QDebug
+		C:\Qt\5.15.2\android\include\QtQml\QQmlEngine \
+		..\..\libb\libb\src\version.h \
+		C:\Qt\5.15.2\android\include\QtCore\QObject \
+		..\..\libb\libb\libb_global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o armeabi-v7a\main.obj main.cpp
 
 armeabi-v7a\Page1Form.ui_qml.obj: armeabi-v7a\Page1Form.ui_qml.cpp 

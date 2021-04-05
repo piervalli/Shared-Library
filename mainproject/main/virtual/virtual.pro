@@ -1,4 +1,4 @@
-QT += quick
+QT += quick qml
 
 CONFIG += c++14
 
@@ -48,14 +48,12 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 ANDROID_EXTRA_LIBS =
 
-
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../libb/libb/release/ -llibb
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../libb/libb/debug/ -llibb
-else:unix: LIBS += -L$$OUT_PWD/../../libb/libb/ -llibb
+#else:unix: LIBS += -L$$OUT_PWD/../../libb/libb/ -llibb_armeabi-v7a
 
 INCLUDEPATH += $$PWD/../../libb/libb
 DEPENDPATH += $$PWD/../../libb/libb
-
 
 android {
 
@@ -63,8 +61,9 @@ android {
 
   equals(ANDROID_TARGET_ARCH,armeabi-v7a) {
     message(The project will be installed in armeabi-v7a)
-    ANDROID_EXTRA_LIBS += $$OUT_PWD/../../libb/libb/liblibb_armeabi-v7a.so
-    message(out $$OUT_PWD)
+    LIBS += -L$$OUT_PWD/../../libb/libb/ -llibb_armeabi-v7a
+    ANDROID_EXTRA_LIBS = \
+      $$OUT_PWD/../../libb/libb/liblibb_armeabi-v7a.so
   }
 
 }

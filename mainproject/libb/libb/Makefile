@@ -51,10 +51,15 @@ OBJECTS_DIR   = armeabi-v7a\\
 
 ####### Files
 
-SOURCES       = libb.cpp 
-OBJECTS       = armeabi-v7a\libb.obj
+SOURCES       = libb.cpp \
+		src\version.cpp armeabi-v7a\moc_version.cpp
+OBJECTS       = armeabi-v7a\libb.obj \
+		armeabi-v7a\version.obj \
+		armeabi-v7a\moc_version.obj
 DIST          =  libb_global.h \
-		libb.h libb.cpp
+		libb.h \
+		src\version.h libb.cpp \
+		src\version.cpp
 QMAKE_TARGET  = libb_armeabi-v7a
 DESTDIR       = 
 TARGET        = liblibb_armeabi-v7a.so
@@ -92,8 +97,8 @@ distdir: FORCE
 	@if not exist $(DISTDIR) mkdir $(DISTDIR) & if not exist $(DISTDIR) exit 1
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)\
 	$(COPY_FILE) --parents C:\Qt\5.15.2\android\mkspecs\features\data\dummy.cpp $(DISTDIR)\
-	$(COPY_FILE) --parents libb_global.h libb.h $(DISTDIR)\
-	$(COPY_FILE) --parents libb.cpp $(DISTDIR)\
+	$(COPY_FILE) --parents libb_global.h libb.h src\version.h $(DISTDIR)\
+	$(COPY_FILE) --parents libb.cpp src\version.cpp $(DISTDIR)\
 
 
 clean: compiler_clean 
@@ -134,8 +139,68 @@ compiler_moc_predefs_clean:
 armeabi-v7a\moc_predefs.h: C:\Qt\5.15.2\android\mkspecs\features\data\dummy.cpp
 	C:\Users\pier\AppData\Local\Android\Sdk\ndk\21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++ -target armv7a-linux-androideabi21 -fno-limit-debug-info -fPIC -fstack-protector-strong -DANDROID -O2 -mthumb -Oz -std=gnu++1y -Wall -W -dM -E -o armeabi-v7a\moc_predefs.h C:\Qt\5.15.2\android\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: armeabi-v7a\moc_version.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) armeabi-v7a\moc_version.cpp
+armeabi-v7a\moc_version.cpp: src\version.h \
+		C:\Qt\5.15.2\android\include\QtCore\QObject \
+		C:\Qt\5.15.2\android\include\QtCore\qobject.h \
+		C:\Qt\5.15.2\android\include\QtCore\qobjectdefs.h \
+		C:\Qt\5.15.2\android\include\QtCore\qnamespace.h \
+		C:\Qt\5.15.2\android\include\QtCore\qglobal.h \
+		C:\Qt\5.15.2\android\include\QtCore\qconfig-bootstrapped.h \
+		C:\Qt\5.15.2\android\include\QtCore\qconfig.h \
+		C:\Qt\5.15.2\android\include\QtCore\qtcore-config.h \
+		C:\Qt\5.15.2\android\include\QtCore\qsystemdetection.h \
+		C:\Qt\5.15.2\android\include\QtCore\qprocessordetection.h \
+		C:\Qt\5.15.2\android\include\QtCore\qcompilerdetection.h \
+		C:\Qt\5.15.2\android\include\QtCore\qtypeinfo.h \
+		C:\Qt\5.15.2\android\include\QtCore\qsysinfo.h \
+		C:\Qt\5.15.2\android\include\QtCore\qlogging.h \
+		C:\Qt\5.15.2\android\include\QtCore\qflags.h \
+		C:\Qt\5.15.2\android\include\QtCore\qatomic.h \
+		C:\Qt\5.15.2\android\include\QtCore\qbasicatomic.h \
+		C:\Qt\5.15.2\android\include\QtCore\qatomic_bootstrap.h \
+		C:\Qt\5.15.2\android\include\QtCore\qgenericatomic.h \
+		C:\Qt\5.15.2\android\include\QtCore\qatomic_cxx11.h \
+		C:\Qt\5.15.2\android\include\QtCore\qatomic_msvc.h \
+		C:\Qt\5.15.2\android\include\QtCore\qglobalstatic.h \
+		C:\Qt\5.15.2\android\include\QtCore\qmutex.h \
+		C:\Qt\5.15.2\android\include\QtCore\qnumeric.h \
+		C:\Qt\5.15.2\android\include\QtCore\qversiontagging.h \
+		C:\Qt\5.15.2\android\include\QtCore\qobjectdefs_impl.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstring.h \
+		C:\Qt\5.15.2\android\include\QtCore\qchar.h \
+		C:\Qt\5.15.2\android\include\QtCore\qbytearray.h \
+		C:\Qt\5.15.2\android\include\QtCore\qrefcount.h \
+		C:\Qt\5.15.2\android\include\QtCore\qarraydata.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringliteral.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringalgorithms.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringview.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringbuilder.h \
+		C:\Qt\5.15.2\android\include\QtCore\qlist.h \
+		C:\Qt\5.15.2\android\include\QtCore\qalgorithms.h \
+		C:\Qt\5.15.2\android\include\QtCore\qiterator.h \
+		C:\Qt\5.15.2\android\include\QtCore\qhashfunctions.h \
+		C:\Qt\5.15.2\android\include\QtCore\qpair.h \
+		C:\Qt\5.15.2\android\include\QtCore\qvector.h \
+		C:\Qt\5.15.2\android\include\QtCore\qcontainertools_impl.h \
+		C:\Qt\5.15.2\android\include\QtCore\qpoint.h \
+		C:\Qt\5.15.2\android\include\QtCore\qbytearraylist.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringlist.h \
+		C:\Qt\5.15.2\android\include\QtCore\qregexp.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringmatcher.h \
+		C:\Qt\5.15.2\android\include\QtCore\qcoreevent.h \
+		C:\Qt\5.15.2\android\include\QtCore\qscopedpointer.h \
+		C:\Qt\5.15.2\android\include\QtCore\qmetatype.h \
+		C:\Qt\5.15.2\android\include\QtCore\qvarlengtharray.h \
+		C:\Qt\5.15.2\android\include\QtCore\qcontainerfwd.h \
+		C:\Qt\5.15.2\android\include\QtCore\qobject_impl.h \
+		libb_global.h \
+		armeabi-v7a\moc_predefs.h \
+		C:\Qt\5.15.2\android\bin\moc.exe
+	C:\Qt\5.15.2\android\bin\moc.exe $(DEFINES) --include C:/data/project-qt-shared/Shared-Library/mainproject/libb/libb/armeabi-v7a/moc_predefs.h -IC:/Qt/5.15.2/android/mkspecs/android-clang -IC:/data/project-qt-shared/Shared-Library/mainproject/libb/libb -IC:/Qt/5.15.2/android/include -IC:/Qt/5.15.2/android/include/QtCore -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include src\version.h -o armeabi-v7a\moc_version.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
@@ -146,7 +211,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
@@ -218,6 +283,66 @@ armeabi-v7a\libb.obj: libb.cpp libb.h \
 		C:\Qt\5.15.2\android\include\QtCore\qsharedpointer.h \
 		C:\Qt\5.15.2\android\include\QtCore\qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o armeabi-v7a\libb.obj libb.cpp
+
+armeabi-v7a\version.obj: src\version.cpp src\version.h \
+		C:\Qt\5.15.2\android\include\QtCore\QObject \
+		C:\Qt\5.15.2\android\include\QtCore\qobject.h \
+		C:\Qt\5.15.2\android\include\QtCore\qobjectdefs.h \
+		C:\Qt\5.15.2\android\include\QtCore\qnamespace.h \
+		C:\Qt\5.15.2\android\include\QtCore\qglobal.h \
+		C:\Qt\5.15.2\android\include\QtCore\qconfig-bootstrapped.h \
+		C:\Qt\5.15.2\android\include\QtCore\qconfig.h \
+		C:\Qt\5.15.2\android\include\QtCore\qtcore-config.h \
+		C:\Qt\5.15.2\android\include\QtCore\qsystemdetection.h \
+		C:\Qt\5.15.2\android\include\QtCore\qprocessordetection.h \
+		C:\Qt\5.15.2\android\include\QtCore\qcompilerdetection.h \
+		C:\Qt\5.15.2\android\include\QtCore\qtypeinfo.h \
+		C:\Qt\5.15.2\android\include\QtCore\qsysinfo.h \
+		C:\Qt\5.15.2\android\include\QtCore\qlogging.h \
+		C:\Qt\5.15.2\android\include\QtCore\qflags.h \
+		C:\Qt\5.15.2\android\include\QtCore\qatomic.h \
+		C:\Qt\5.15.2\android\include\QtCore\qbasicatomic.h \
+		C:\Qt\5.15.2\android\include\QtCore\qatomic_bootstrap.h \
+		C:\Qt\5.15.2\android\include\QtCore\qgenericatomic.h \
+		C:\Qt\5.15.2\android\include\QtCore\qatomic_cxx11.h \
+		C:\Qt\5.15.2\android\include\QtCore\qatomic_msvc.h \
+		C:\Qt\5.15.2\android\include\QtCore\qglobalstatic.h \
+		C:\Qt\5.15.2\android\include\QtCore\qmutex.h \
+		C:\Qt\5.15.2\android\include\QtCore\qnumeric.h \
+		C:\Qt\5.15.2\android\include\QtCore\qversiontagging.h \
+		C:\Qt\5.15.2\android\include\QtCore\qobjectdefs_impl.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstring.h \
+		C:\Qt\5.15.2\android\include\QtCore\qchar.h \
+		C:\Qt\5.15.2\android\include\QtCore\qbytearray.h \
+		C:\Qt\5.15.2\android\include\QtCore\qrefcount.h \
+		C:\Qt\5.15.2\android\include\QtCore\qarraydata.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringliteral.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringalgorithms.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringview.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringbuilder.h \
+		C:\Qt\5.15.2\android\include\QtCore\qlist.h \
+		C:\Qt\5.15.2\android\include\QtCore\qalgorithms.h \
+		C:\Qt\5.15.2\android\include\QtCore\qiterator.h \
+		C:\Qt\5.15.2\android\include\QtCore\qhashfunctions.h \
+		C:\Qt\5.15.2\android\include\QtCore\qpair.h \
+		C:\Qt\5.15.2\android\include\QtCore\qvector.h \
+		C:\Qt\5.15.2\android\include\QtCore\qcontainertools_impl.h \
+		C:\Qt\5.15.2\android\include\QtCore\qpoint.h \
+		C:\Qt\5.15.2\android\include\QtCore\qbytearraylist.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringlist.h \
+		C:\Qt\5.15.2\android\include\QtCore\qregexp.h \
+		C:\Qt\5.15.2\android\include\QtCore\qstringmatcher.h \
+		C:\Qt\5.15.2\android\include\QtCore\qcoreevent.h \
+		C:\Qt\5.15.2\android\include\QtCore\qscopedpointer.h \
+		C:\Qt\5.15.2\android\include\QtCore\qmetatype.h \
+		C:\Qt\5.15.2\android\include\QtCore\qvarlengtharray.h \
+		C:\Qt\5.15.2\android\include\QtCore\qcontainerfwd.h \
+		C:\Qt\5.15.2\android\include\QtCore\qobject_impl.h \
+		libb_global.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o armeabi-v7a\version.obj src\version.cpp
+
+armeabi-v7a\moc_version.obj: armeabi-v7a\moc_version.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o armeabi-v7a\moc_version.obj armeabi-v7a\moc_version.cpp
 
 ####### Install
 
