@@ -50,7 +50,7 @@ ANDROID_EXTRA_LIBS =
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../libb/libb/release/ -llibb
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../libb/libb/debug/ -llibb
-#else:unix: LIBS += -L$$OUT_PWD/../../libb/libb/ -llibb_armeabi-v7a
+#else:unix: LIBS += -L$$OUT_PWD/../../libb/libb/ -llibb_armeabi-v7a  // for android and for every arch we have a spefic library
 
 INCLUDEPATH += $$PWD/../../libb/libb
 DEPENDPATH += $$PWD/../../libb/libb
