@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<RCC>
+    <qresource prefix="/">
+        <file alias="main.qml">main.qml</file>
+        <file alias="HomeForm.ui.qml">HomeForm.ui.qml</file>
+        <file alias="Page1Form.ui.qml">Page1Form.ui.qml</file>
+        <file alias="Page2Form.ui.qml">Page2Form.ui.qml</file>
+        <file alias="qtquickcontrols2.conf">qtquickcontrols2.conf</file>
+    </qresource>
+</RCC>
